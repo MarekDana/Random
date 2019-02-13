@@ -1,5 +1,7 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
+
+import "./styles.css";
 
 export default class App extends React.Component {
   state = {
@@ -11,7 +13,7 @@ export default class App extends React.Component {
   }
 
   getBeers() {
-    fetch(`http://private-9c94be-namelist3.apiary-mock.com/questions`)
+    fetch(`https://private-d3083-seznam.apiary-mock.com/name`)
       .then(data => data.json())
       .then(beers => {
         this.setState({ beers: beers.arrNames });
