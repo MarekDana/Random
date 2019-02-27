@@ -5,18 +5,18 @@ import "./styles.css";
 
 export default class App extends React.Component {
   state = {
-    beers: []
+    list: []
   };
   constructor() {
     super();
-    this.getBeers();
+    this.getNames();
   }
 
-  getBeers() {
+  getNames() {
     fetch(`https://private-d3083-seznam.apiary-mock.com/name`)
       .then(data => data.json())
-      .then(beers => {
-        this.setState({ beers: beers.arrNames });
+      .then(list => {
+        this.setState({ list: list.arrNames });
       })
       .catch(error => {
         console.log(error);
@@ -24,12 +24,14 @@ export default class App extends React.Component {
   }
 
   render() {
-    let beerNames = this.state.beers.map(beer => (
+    let allNames = this.state.list.map(listj => (
       <li>
-        <strong> {beer.name}</strong>
+        <strong> {listj.key}</strong>
+        <strong> {listj.name}</strong>
+        <strong> {listj.lname}</strong>
       </li>
     ));
-    return <div> {beerNames}</div>;
+    return <div> {allNames}</div>;
     //<div> {JSON.stringify(this.state.beers)}</div>;
   }
 }
